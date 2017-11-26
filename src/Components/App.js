@@ -8,37 +8,34 @@ class App extends Component {
     super();
     this.state = {
       limit: "",
-      searchTerm: "",
+      searchTerm: "goat",
       images: []
     };
     this.modelImages = this.modelImages.bind(this);
+  }
+  componentDidMount() {
+    const searchTerm = this.state.searchTerm;
+    const KEY = `tN2fD3YQhNyUOzryYy1oRTUs03F5QPrJ`;
+    const URL = `https://api.giphy.com/v1/gifs/`;
+    fetch(`${URL}search?api_key=${KEY}&q=${searchTerm}`)
+      .then(res => res.json())
+      .then(json => this.modelImages(json.data));
   }
 
   handleSearchInput = e => this.setState({ searchTerm: e.target.value });
   handleLimitInput = e => this.setState({ limit: e.target.value });
 
   // fetch(`${URL}search?api_key=${KEY}&q=${search}&limit=${limit}`)
-  fetchImages = searchTerm => {
-    const KEY = `tN2fD3YQhNyUOzryYy1oRTUs03F5QPrJ`;
-    const URL = `https://api.giphy.com/v1/gifs/`;
-    fetch(`${URL}search?api_key=${KEY}&q=${searchTerm}`)
-      .then(res => res.json())
-      .then(json => this.modelImages(json["data"]));
-  };
 
   modelImages(data) {
     const imageAry = [];
     data.forEach(image => {
       return imageAry.push({
-        url: image.images.preview_gif.url,
+        url: image.images.fixed_height.url,
         isFavorite: false
       });
     });
     this.setState({ images: imageAry });
-  }
-
-  componentDidMount() {
-    this.fetchImages("cats");
   }
 
   render() {

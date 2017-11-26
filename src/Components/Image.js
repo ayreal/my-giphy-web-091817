@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 
 const Image = props => (
   <div>
-    <img src={props.url} alt="" />
-    <br />
-    <button>Fave?</button>
+    <li>
+      <img src={props.url} alt="" />
+      <br />
+      <button>Fave?</button>
+    </li>
   </div>
 );
 
