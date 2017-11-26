@@ -4,9 +4,7 @@ import Image from "./Image";
 
 const ResultImages = props => (
   <ul>
-    {props.images.map((image, index) => (
-      <Image key={index} url={image.images.preview_gif.url} />
-    ))}
+    {props.images.map((image, index) => <Image key={index} url={image.url} />)}
   </ul>
 );
 

@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import ResultImages from "./ResultImages";
 import FavoriteImages from "./FavoriteImages";
 
+// const imageAry = []
+
 const ImagesContainer = props => (
   <div>
     <ResultImages images={props.images} />
-    <FavoriteImages images={props.images} />
   </div>
 );
 
