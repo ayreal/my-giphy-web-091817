@@ -1,8 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ResultImages from "./ResultImages";
+import FavoriteImages from "./FavoriteImages";
 
-const Search = () => <div>hi</div>;
+const ImagesContainer = props => (
+  <div>
+    <ResultImages images={props.images} />
+    <FavoriteImages images={props.images} />
+  </div>
+);
 
-Search.propTypes = {};
+ImagesContainer.propTypes = {
+  searchTerm: PropTypes.string,
+  images: PropTypes.array.isRequired
+};
 
-export default Search;
+export default ImagesContainer;

@@ -5,9 +5,15 @@ const Search = () => (
   <div>
     <button>Search</button>
     <button>Trending</button>
+    <br />
+    <input placeholder="Search Here" />
+    <input placeholder="Limit" />
   </div>
 );
 
-Search.propTypes = {};
+Search.propTypes = {
+  searchTerm: PropTypes.string,
+  limit: PropTypes.string
+};
 
 export default Search;
