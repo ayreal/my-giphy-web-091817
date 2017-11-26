@@ -1,29 +1,46 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-const Search = props => (
-  <div>
-    <button>Search</button>
-    <button>Trending</button>
-    <br />
-    <input
-      placeholder="Search Here"
-      value={props.searchTerm}
-      onChange={props.handleSearchInput}
-    />
-    <input
-      placeholder="Limit"
-      value={props.limit}
-      onChange={props.handleLimitInput}
-    />
-  </div>
-);
+class Search extends Component {
+  constructor() {
+    super();
+    this.state = {
+      searchText: "",
+      limit: ""
+    };
+  }
+
+  handleSearchInput = e => {
+    this.setState({ searchText: e.target.value });
+  };
+  handleLimitInput = e => this.setState({ limit: e.target.value });
+
+  render() {
+    return (
+      <div>
+        <button>Search</button>
+        <button>Trending</button>
+        <br />
+        <input
+          type="text"
+          placeholder="Search Here"
+          value={this.state.searchText}
+          onChange={this.handleSearchInput}
+        />
+        <input
+          type="text"
+          placeholder="Limit"
+          value={this.state.limit}
+          onChange={this.handleLimitInput}
+        />
+      </div>
+    );
+  }
+}
 
 Search.propTypes = {
-  searchTerm: PropTypes.string,
   limit: PropTypes.string,
-  handleSearchInput: PropTypes.func.isRequired,
-  handleLimitInput: PropTypes.func.isRequired
+  onSearch: PropTypes.func.isRequired
 };
 
 export default Search;

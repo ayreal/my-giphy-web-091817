@@ -8,24 +8,21 @@ class App extends Component {
     super();
     this.state = {
       limit: "",
-      searchTerm: "goat",
+      // searchTerm: "goat",
       images: []
     };
     this.modelImages = this.modelImages.bind(this);
   }
-  componentDidMount() {
-    const searchTerm = this.state.searchTerm;
+  componentDidMount() {}
+
+  performSearch = query => {
+    const limit = this.state.limit;
     const KEY = `tN2fD3YQhNyUOzryYy1oRTUs03F5QPrJ`;
     const URL = `https://api.giphy.com/v1/gifs/`;
-    fetch(`${URL}search?api_key=${KEY}&q=${searchTerm}`)
+    fetch(`${URL}search?api_key=${KEY}&q=${query}&limit=${limit}`)
       .then(res => res.json())
       .then(json => this.modelImages(json.data));
-  }
-
-  handleSearchInput = e => this.setState({ searchTerm: e.target.value });
-  handleLimitInput = e => this.setState({ limit: e.target.value });
-
-  // fetch(`${URL}search?api_key=${KEY}&q=${search}&limit=${limit}`)
+  };
 
   modelImages(data) {
     const imageAry = [];
@@ -45,8 +42,7 @@ class App extends Component {
         <Search
           searchTerm={this.state.searchTerm}
           limit={this.state.limit}
-          handleSearchInput={this.handleSearchInput}
-          handleLimitInput={this.handleLimitInput}
+          onSearch={this.performSearch}
         />
         <ImagesContainer
           searchTerm={this.searchTerm}
