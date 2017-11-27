@@ -12,8 +12,12 @@ class Search extends Component {
 
   handleSearchInput = e => {
     this.setState({ searchText: e.target.value });
+    this.props.onSearch(this.state.searchText, this.state.limit);
   };
-  handleLimitInput = e => this.setState({ limit: e.target.value });
+  handleLimitInput = e => {
+    this.setState({ limit: e.target.value });
+    this.props.onSearch(this.state.searchText, this.state.limit);
+  };
 
   render() {
     return (

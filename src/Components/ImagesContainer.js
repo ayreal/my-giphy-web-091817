@@ -3,17 +3,16 @@ import PropTypes from "prop-types";
 import ResultImages from "./ResultImages";
 import FavoriteImages from "./FavoriteImages";
 
-// const imageAry = []
-
 const ImagesContainer = props => (
   <div>
-    <ResultImages images={props.images} />
+    <ResultImages images={props.images} handleFavorite={props.handleFavorite} />
   </div>
 );
 
 ImagesContainer.propTypes = {
   searchTerm: PropTypes.string,
-  images: PropTypes.array.isRequired
+  images: PropTypes.array.isRequired,
+  handleFavorite: PropTypes.func.isRequired
 };
 
 export default ImagesContainer;

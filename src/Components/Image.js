@@ -6,12 +6,13 @@ const Image = props => (
     <li>
       <img src={props.url} alt="" />
       <br />
-      <button>Fave?</button>
+      <button onClick>Fave?</button>
     </li>
   </div>
 );
 
 Image.propTypes = {
+  url: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired
 };
 
